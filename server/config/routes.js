@@ -14,6 +14,7 @@ module.exports = function(app){
 
     app.get('/topics', topicsController.index);
     app.post('/topics', topicsController.create);
+    app.get('/topics/:id', topicsController.get);
     app.put('/topics/:id', topicsController.update);
     app.delete('/topics/:id', topicsController.delete);
 

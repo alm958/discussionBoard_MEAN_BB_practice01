@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider){
     })
     .when('/topic/:id',{
         templateUrl: 'partials/_topic.html',
-        controller: 'topicController'
+        controller: 'topicsController'
     })
     .otherwise({
          redirectTo: "/"

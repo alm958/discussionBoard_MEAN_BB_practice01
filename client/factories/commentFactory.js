@@ -1,44 +1,44 @@
-app.factory('objectFactory', ['$http', function($http){
-    var oFactory = {};
-    oFactory.objlist = [];
-    oFactory.addObj = function(obj, callback){
-        $http.post('/objects', obj)
-            .then(function(addedObj){
-                oFactory.objlist.push(addedObj);
+app.factory('commentFactory', ['$http', function($http){
+    var factory = {};
+    factory.commentlist = [];
+    factory.addComment = function(comment, callback){
+        $http.post('/comments', comment)
+            .then(function(addedComment){
+                factory.commentlist.push(addedComment);
                 callback();
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.getObjs = function(callback){
-        $http.get('/objects')
-            .then(function(objs){
-                oFactory.objlist = objs.data;
-                callback(oFactory.objlist);
+    factory.getComments = function(callback){
+        $http.get('/comments')
+            .then(function(comments){
+                factory.commentlist = comments.data;
+                callback(factory.commentlist);
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.findObj = function(id){
-        return oFactory.objlist.find(obj => obj._id == id)
+    factory.findComment = function(id){
+        return factory.commentlist.find(comment => comment._id == id)
     };
-    oFactory.updateObj = function(obj){
-        $http.put(`/objects/${obj._id}`, obj)
+    factory.updateComment = function(comment){
+        $http.put(`/comments/${comment._id}`, comment)
             .then(function(response){
-                var obj = response.data;
-                var updateIndex = oFactory.objlist.findIndex(x => x._id === obj._id);
+                var comment = response.data;
+                var updateIndex = factory.commentlist.findIndex(x => x._id === comment._id);
                 if (updateIndex > -1) {
-                 oFactory.objlist[updateIndex] = obj;
+                 factory.commentlist[updateIndex] = comment;
                 }
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.delObj = function(id, callback){
-        $http.delete(`/objects/${id}`)
+    factory.delComment = function(id, callback){
+        $http.delete(`/comments/${id}`)
             .then(function(response){
                 console.log(response);
                 callback();
@@ -49,5 +49,5 @@ app.factory('objectFactory', ['$http', function($http){
     }
 
 
-    return oFactory;
+    return factory;
 }])

@@ -23,6 +23,17 @@ module.exports = {
                 res.json(err);
             });
     },
+    get: function(req, res){
+        console.log('in tCont findOne topic');
+        Topic.findOne({_id:req.params.id}).populate('user posts posts.user posts.comments posts.comments.user')
+            .then(function(topic){
+                res.json(topic);
+            })
+            .catch(function(err){
+                console.log(err);
+                res.json(err);
+            });
+    },
     delete: function(req, res){
         console.log(req.params);
         Topic.remove({_id:req.params.id})

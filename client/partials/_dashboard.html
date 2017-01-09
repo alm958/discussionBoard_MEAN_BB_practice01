@@ -4,16 +4,16 @@
 <table>
     <thead>
         <tr>
-            <th><a ng-click="sortType = 'topic.category'; sortReverse = !sortReverse">Category</a></th>
-            <th><a ng-click="sortType = 'topic.title'; sortReverse = !sortReverse">Topic</a></th>
-            <th><a ng-click="sortType = 'topic.user.name'; sortReverse = !sortReverse">User Name</a></th>
-            <th><a ng-click="sortType = 'topic.posts'; sortReverse = !sortReverse">Posts</a></th>
+            <th><a ng-click="sortType = 'category'; sortReverse = !sortReverse">Category</a></th>
+            <th><a ng-click="sortType = 'title'; sortReverse = !sortReverse">Topic</a></th>
+            <th><a ng-click="sortType = 'user.name'; sortReverse = !sortReverse">User Name</a></th>
+            <th><a ng-click="sortType = 'posts'; sortReverse = !sortReverse">Posts</a></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat='topic in topiclist | orderBy:sortType:sortReverse | filter:filterText'>
             <td ng-bind='topic.category'></td>
-            <td><a ng-bind='topic.title' href='/topic/{{topic._id}}'></a></td>
+            <td><a ng-bind='topic.title' href ng-click='findTopicById(topic._id)'></a></td>
             <td ng-bind='topic.user.name'></td>
             <td ng-bind='topic.posts'></td>
         </tr>

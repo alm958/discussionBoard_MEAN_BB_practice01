@@ -1,44 +1,44 @@
-app.factory('objectFactory', ['$http', function($http){
-    var oFactory = {};
-    oFactory.objlist = [];
-    oFactory.addObj = function(obj, callback){
-        $http.post('/objects', obj)
-            .then(function(addedObj){
-                oFactory.objlist.push(addedObj);
+app.factory('postFactory', ['$http', function($http){
+    var factory = {};
+    factory.postlist = [];
+    factory.addPost = function(post, callback){
+        $http.post('/posts', post)
+            .then(function(addedPost){
+                factory.postlist.push(addedPost);
                 callback();
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.getObjs = function(callback){
-        $http.get('/objects')
-            .then(function(objs){
-                oFactory.objlist = objs.data;
-                callback(oFactory.objlist);
+    factory.getPosts = function(callback){
+        $http.get('/posts')
+            .then(function(posts){
+                factory.postlist = posts.data;
+                callback(factory.postlist);
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.findObj = function(id){
-        return oFactory.objlist.find(obj => obj._id == id)
+    factory.findPost = function(id){
+        return factory.postlist.find(post => post._id == id)
     };
-    oFactory.updateObj = function(obj){
-        $http.put(`/objects/${obj._id}`, obj)
+    factory.updatePost = function(post){
+        $http.put(`/posts/${post._id}`, post)
             .then(function(response){
-                var obj = response.data;
-                var updateIndex = oFactory.objlist.findIndex(x => x._id === obj._id);
+                var post = response.data;
+                var updateIndex = factory.postlist.findIndex(x => x._id === post._id);
                 if (updateIndex > -1) {
-                 oFactory.objlist[updateIndex] = obj;
+                 factory.postlist[updateIndex] = post;
                 }
             })
             .catch(function(err){
                 console.log(err);
             });
     }
-    oFactory.delObj = function(id, callback){
-        $http.delete(`/objects/${id}`)
+    factory.delPost = function(id, callback){
+        $http.delete(`/posts/${id}`)
             .then(function(response){
                 console.log(response);
                 callback();
@@ -49,5 +49,5 @@ app.factory('objectFactory', ['$http', function($http){
     }
 
 
-    return oFactory;
+    return factory;
 }])

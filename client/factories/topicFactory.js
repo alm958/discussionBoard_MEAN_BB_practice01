@@ -1,11 +1,12 @@
-app.factory('topicFactory', ['$http', function($http){
+app.factory('topicFactory', ['$http', '$location', function($http, $location){
     var factory = {};
+    factory
     factory.topiclist = [];
     factory.addTopic = function(topic, callback){
         $http.post('/topics', topic)
             .then(function(addedTopic){
                 factory.topiclist.push(addedTopic);
-                
+
                 console.log(addedTopic.user);
                 callback();
             })
@@ -18,6 +19,23 @@ app.factory('topicFactory', ['$http', function($http){
             .then(function(topics){
                 factory.topiclist = topics.data;
                 callback(factory.topiclist);
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+    }
+    factory.findTopicById = function(id){
+        console.log(id);
+        if (id == null){
+            console.log('id is undefined');
+            var id = $route.current.params.id;
+        }
+        $http.get(`/topics/${id}`)
+            .then(function(topic){
+                console.log('********************');
+                console.log(topic);
+                $location.path(`/topic/${topic.data._id}`);
+                // callback(factory.topiclist);
             })
             .catch(function(err){
                 console.log(err);
@@ -39,17 +57,6 @@ app.factory('topicFactory', ['$http', function($http){
                 console.log(err);
             });
     }
-    factory.delTopic = function(id, callback){
-        $http.delete(`/topics/${id}`)
-            .then(function(response){
-                console.log(response);
-                callback();
-            })
-            .catch(function(err){
-                console.log(err);
-            });
-    }
-
 
     return factory;
 }])

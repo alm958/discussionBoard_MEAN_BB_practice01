@@ -25,12 +25,19 @@ app.controller('dashboardController', ['$scope','$route','$routeParams', '$cooki
     $scope.showUser = function(id){
         userFactory.getUser(id);
     }
-    $scope.findTopicById = function(){
-        console.log($route.current.params.id);
-        var id = $route.current.params.id;
-        var topic = topicFactory.findTopic(id);
+    $scope.findTopicById = function(id){
+        console.log('in dash cont findTopicById');
+        console.log(id);
+        var topic = topicFactory.findTopicById(id);
         $scope.topic = topic;
+
     }
+    // $scope.findTopicById = function(){
+    //     console.log($route.current.params.id);
+    //     var id = $route.current.params.id;
+    //     var topic = topicFactory.findTopic(id);
+    //     $scope.topic = topic;
+    // }
     $scope.updateTopiccount = function(){
         console.log('in controller updateTopiccount');
         userFactory.updateTopiccount($scope.currentUserId);
