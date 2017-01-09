@@ -1,0 +1,16 @@
+<fieldset ng-init='findTopicById(id)'>
+<p><span ng-bind='topic.user.name'></span> posted a topic:</p>
+<h4 ng-bind='topic.title'></h4>
+<p ng-bind='topic.description'></p>
+<h4>Post your answer here...</h4>
+<form name='nPostForm' nonvalidate>
+    <textarea type="text" ng-model='nPost.description' required></textarea>
+    <input type="submit" value="Submit" ng-click='addPost() && $scope.nPostForm.$setPristine()' ng-disabled='nPostForm.$invalid'>
+</form><br>
+<div class="posts" ng-repeat='post in topic.posts | orderBy:sortType:sortReverse'>
+    <p><a href="#user/{{post.user._id}}" ng-bind='post.user.name'></a> <span ng-bind='post.content'></span></p>
+    <div class="comments" ng-repeat='comment in post.comments'>
+        <p>comments will go here</p>
+    </div>
+</div>
+</fieldset>

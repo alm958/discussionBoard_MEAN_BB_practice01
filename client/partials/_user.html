@@ -1,0 +1,10 @@
+<div ng-init='findProdById()'>
+<form novalidate name='nProd'>
+    <h4>Update Product</h4>
+    <label>Name : <br><input type="text" ng-model='prod.name' required></label><br>
+    <label>Image (url) : <br><input type="text" ng-model='prod.image'></label><br>
+    <label>Description : <br><textarea type="text" ng-model='prod.description'></textarea></label><br>
+    <label>Initial Quantity : <br><input type="number" ng-model='prod.quantity' required></label><br>
+    <input type="submit" ng-click='updateProd() && $setPristine' value="Update Product" ng-disabled='nProd.$invalid'>
+</form>
+</div>

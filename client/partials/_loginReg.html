@@ -1,0 +1,6 @@
+<h3>Hello!<br>
+    Please enter your name to join and share your ideas
+<form nonvalidate name='nUser'>
+    <label>Name : <input type="text" ng-model="newUser.name" required></label><br>
+    <input type="submit" value="Enter" ng-click='regUser()' ng-disabled='nUser.$invalid'>
+</form></h3>

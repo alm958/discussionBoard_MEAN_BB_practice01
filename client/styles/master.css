@@ -1,0 +1,55 @@
+.disUnoProd img {
+    width: 90px;
+    height: auto;
+    max-height: 115px;
+    display: block;
+    margin-top: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.disUnoProd{
+    position: relative;
+    display: inline-block;
+    width:180px;
+    height: 227px;
+    border: solid 1px black;
+    align-content: center;
+    vertical-align: middle;
+    text-align: center;
+}
+.disUnoProd p{
+    line-height: .8em;
+}
+.actions {
+    display: inline-block;
+    width:133px;
+    position: absolute;
+    left:25px;
+    bottom: 10px;
+}
+.Products {margin-top: 4px;}
+fieldset{background-color: beige;}
+th, td {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align:  left;
+}
+table{
+    width: 85%;
+    min-width: 600px;
+}
+th.date, td.date {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align: justify;
+    width:160px;
+}
+th.action, td.action {
+    font-weight: lighter;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    text-align: center;
+    width:90px;
+}
