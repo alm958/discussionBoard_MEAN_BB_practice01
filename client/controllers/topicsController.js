@@ -35,13 +35,20 @@ app.controller('topicsController', ['$scope','$route','$routeParams','$cookies',
         console.log('in topic cont findTopicById');
         console.log($route.current.params.id);
         var id = $route.current.params.id;
-        var topic = topicFactory.findTopicById(id);
-        $scope.topic = topic;
-
+        topicFactory.findTopicById(id, function(){
+            $scope.grabCurrentTopic();
+        });
     }
     $scope.updateTopic = function(){
         console.log($scope.topic);
         topicFactory.updateTopic($scope.topic)
+    }
+    $scope.consolelogdata = function(){
+        console.log($scope.topic);
+
+    }
+    $scope.grabCurrentTopic = function(){
+        $scope.topic = topicFactory.sendCurrentTopic();
     }
 
 

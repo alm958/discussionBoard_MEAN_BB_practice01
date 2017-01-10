@@ -1,6 +1,6 @@
 app.factory('topicFactory', ['$http', '$location', function($http, $location){
     var factory = {};
-    factory
+    factory.currentTopic = {};
     factory.topiclist = [];
     factory.addTopic = function(topic, callback){
         $http.post('/topics', topic)
@@ -24,7 +24,7 @@ app.factory('topicFactory', ['$http', '$location', function($http, $location){
                 console.log(err);
             });
     }
-    factory.findTopicById = function(id){
+    factory.findTopicById = function(id, callback){
         console.log(id);
         if (id == null){
             console.log('id is undefined');
@@ -34,8 +34,9 @@ app.factory('topicFactory', ['$http', '$location', function($http, $location){
             .then(function(topic){
                 console.log('********************');
                 console.log(topic);
+                factory.currentTopic = topic;
                 $location.path(`/topic/${topic.data._id}`);
-                // callback(factory.topiclist);
+                callback();
             })
             .catch(function(err){
                 console.log(err);
@@ -56,6 +57,9 @@ app.factory('topicFactory', ['$http', '$location', function($http, $location){
             .catch(function(err){
                 console.log(err);
             });
+    }
+    factory.sendCurrentTopic = function(){
+        return factory.currentTopic;
     }
 
     return factory;
